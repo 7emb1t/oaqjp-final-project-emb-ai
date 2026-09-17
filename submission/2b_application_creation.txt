@@ -1,0 +1,14 @@
+Task 2 — Activity 2: terminal output showing the application imported and tested.
+
+RUN THIS IN THE THEIA LAB (final_project directory), THEN PASTE THE OUTPUT BELOW:
+
+    python3
+    >>> from EmotionDetection.emotion_detection import emotion_detector
+    >>> emotion_detector("I love this new technology.")
+
+(At the Task 2 stage the function returns the raw response text, i.e. the full
+JSON string containing "emotionPredictions" with the anger/disgust/fear/joy/
+sadness scores.)
+
+--------------------- PASTE TERMINAL OUTPUT BELOW ---------------------
+

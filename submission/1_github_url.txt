@@ -1,0 +1,6 @@
+Task 1 — Activity 1: Public GitHub repository URL of the README.md file
+(README.md contains the project name: Final project)
+
+https://github.com/7emb1t/oaqjp-final-project-emb-ai/blob/main/README.md
+
+Repository URL: https://github.com/7emb1t/oaqjp-final-project-emb-ai

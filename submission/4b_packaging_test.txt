@@ -1,0 +1,12 @@
+Task 4 — Activity 2: terminal output validating that EmotionDetection is a valid package.
+
+RUN THIS IN THE THEIA LAB (final_project directory), THEN PASTE THE OUTPUT BELOW:
+
+    python3
+    >>> from EmotionDetection import emotion_detector
+    >>> emotion_detector("I hate working long hours.")
+
+Expected: no import errors, and 'dominant_emotion': 'anger'.
+
+--------------------- PASTE TERMINAL OUTPUT BELOW ---------------------
+

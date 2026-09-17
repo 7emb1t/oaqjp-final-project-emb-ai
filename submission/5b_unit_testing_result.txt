@@ -1,0 +1,15 @@
+Task 5 — Activity 2: terminal output showing that all unit tests passed.
+
+RUN THIS IN THE THEIA LAB (final_project directory), THEN PASTE THE OUTPUT BELOW:
+
+    python3 test_emotion_detection.py
+
+Expected:
+    .....
+    ----------------------------------------------------------------------
+    Ran 5 tests in <n>s
+
+    OK
+
+--------------------- PASTE TERMINAL OUTPUT BELOW ---------------------
+

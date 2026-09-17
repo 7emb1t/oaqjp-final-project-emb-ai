@@ -1,0 +1,14 @@
+Task 3 — Activity 2: terminal output showing the formatted output.
+
+RUN THIS IN THE THEIA LAB (final_project directory), THEN PASTE THE OUTPUT BELOW:
+
+    python3
+    >>> from EmotionDetection.emotion_detection import emotion_detector
+    >>> emotion_detector("I am so happy I am doing this.")
+
+Expected shape (dominant emotion must be joy):
+    {'anger': <score>, 'disgust': <score>, 'fear': <score>, 'joy': <score>,
+     'sadness': <score>, 'dominant_emotion': 'joy'}
+
+--------------------- PASTE TERMINAL OUTPUT BELOW ---------------------
+
