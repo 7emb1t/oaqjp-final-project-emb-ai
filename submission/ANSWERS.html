@@ -6,10 +6,10 @@
 :root {
   --paper:#F4F6F8; --surface:#FFFFFF; --sunk:#EEF1F5;
   --ink:#141A21; --ink-2:#4A5563; --ink-3:#77828F;
-  --rule:#DCE1E8; --rule-2:#C6CEd8;
+  --rule:#DCE1E8; --rule-2:#C6CED8;
   --accent:#2B4C7E; --accent-soft:#E7EDF6;
   --ok:#1C6F55; --ok-soft:#E1F0EA;
-  --wait:#8E5510; --wait-soft:#F8EEDD;
+  --bad:#9E2F2B; --bad-soft:#F9E8E7;
   --shadow:0 1px 2px rgba(20,26,33,.05), 0 8px 24px -16px rgba(20,26,33,.18);
   --sans:"IBM Plex Sans",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
   --serif:"IBM Plex Serif",ui-serif,Georgia,"Times New Roman",serif;
@@ -22,7 +22,7 @@
     --rule:#242D38; --rule-2:#333E4C;
     --accent:#8FB0DC; --accent-soft:#1A2433;
     --ok:#5BC49E; --ok-soft:#13261F;
-    --wait:#DCA858; --wait-soft:#2A2113;
+    --bad:#E88C86; --bad-soft:#2C1817;
     --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.7);
   }
 }
@@ -32,19 +32,16 @@
   --rule:#242D38; --rule-2:#333E4C;
   --accent:#8FB0DC; --accent-soft:#1A2433;
   --ok:#5BC49E; --ok-soft:#13261F;
-  --wait:#DCA858; --wait-soft:#2A2113;
+  --bad:#E88C86; --bad-soft:#2C1817;
   --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.7);
 }
 * { box-sizing:border-box; }
 body {
   margin:0; background:var(--paper); color:var(--ink);
-  font-family:var(--sans); font-size:16px; line-height:1.55;
-  -webkit-font-smoothing:antialiased;
+  font-family:var(--sans); font-size:16px; line-height:1.55; -webkit-font-smoothing:antialiased;
 }
 .wrap { max-width:1160px; margin:0 auto; padding:clamp(24px,4vw,56px) clamp(16px,3vw,32px) 96px; }
-
-/* masthead */
-.mast { border-bottom:1px solid var(--rule); padding-bottom:28px; margin-bottom:36px; }
+.mast { border-bottom:1px solid var(--rule); padding-bottom:28px; margin-bottom:32px; }
 .eyebrow {
   font-family:var(--mono); font-size:11.5px; font-weight:500; letter-spacing:.14em;
   text-transform:uppercase; color:var(--accent); margin:0 0 14px;
@@ -59,24 +56,25 @@ body {
   font-family:var(--mono); font-size:12px; font-weight:500; padding:5px 11px; border-radius:2px;
   border:1px solid var(--rule-2);
 }
+.t-bad { color:var(--bad); background:var(--bad-soft); border-color:transparent !important; }
 .t-ok { color:var(--ok); background:var(--ok-soft); border-color:transparent !important; }
-.t-wait { color:var(--wait); background:var(--wait-soft); border-color:transparent !important; }
-
-/* notice */
 .notice {
   display:grid; grid-template-columns:auto 1fr; gap:14px; align-items:start;
-  background:var(--surface); border:1px solid var(--rule); border-left:3px solid var(--wait);
-  padding:18px 20px; margin-bottom:40px; box-shadow:var(--shadow);
+  background:var(--surface); border:1px solid var(--rule); border-left:3px solid var(--bad);
+  padding:18px 20px; margin-bottom:22px; box-shadow:var(--shadow);
 }
 .notice h3 { font-size:14px; font-weight:600; margin:0 0 6px; letter-spacing:-.01em; }
-.notice p { margin:0; font-size:14.5px; color:var(--ink-2); max-width:70ch; }
-.notice .ic { font-family:var(--mono); font-size:13px; font-weight:600; color:var(--wait); padding-top:1px; }
-
-/* two-col */
+.notice p { margin:0 0 8px; font-size:14.5px; color:var(--ink-2); max-width:72ch; }
+.notice p:last-child { margin-bottom:0; }
+.notice .ic { font-family:var(--mono); font-size:13px; font-weight:600; color:var(--bad); padding-top:1px; }
+.setup {
+  background:var(--surface); border:1px solid var(--rule); border-left:3px solid var(--accent);
+  padding:18px 20px 22px; margin-bottom:40px; box-shadow:var(--shadow);
+}
+.setup h3 { font-size:14px; font-weight:600; margin:0 0 6px; }
+.setup p { margin:0; font-size:14.5px; color:var(--ink-2); max-width:72ch; }
 .cols { display:grid; grid-template-columns:1fr; gap:40px; }
 @media (min-width:1000px) { .cols { grid-template-columns:232px 1fr; gap:52px; } }
-
-/* rail */
 .rail { align-self:start; }
 @media (min-width:1000px) { .rail { position:sticky; top:28px; } }
 .rail h4 {
@@ -86,29 +84,28 @@ body {
 .rail ol { list-style:none; margin:0; padding:0; display:flex; flex-direction:column; }
 .rail a {
   display:grid; grid-template-columns:9px 22px 1fr; align-items:center; gap:9px;
-  padding:6px 8px 6px 4px; text-decoration:none; color:var(--ink-2);
-  border-radius:2px; font-size:13.5px;
+  padding:6px 8px 6px 4px; text-decoration:none; color:var(--ink-2); border-radius:2px; font-size:13.5px;
 }
 .rail a:hover { background:var(--sunk); color:var(--ink); }
 .rail a:focus-visible { outline:2px solid var(--accent); outline-offset:1px; }
 .dot { width:7px; height:7px; border-radius:50%; }
 .dot.ok { background:var(--ok); }
-.dot.wait { background:var(--wait); }
+.dot.bad { background:var(--bad); }
 .rn { font-family:var(--mono); font-size:11.5px; color:var(--ink-3); font-variant-numeric:tabular-nums; }
 .rl { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
-
-/* cards */
 .stack { display:flex; flex-direction:column; gap:26px; }
 .q {
   background:var(--surface); border:1px solid var(--rule); box-shadow:var(--shadow);
   padding:24px clamp(18px,2.4vw,28px) 26px; scroll-margin-top:24px;
 }
+.q.redo { border-left:3px solid var(--bad); }
 .qh { display:grid; grid-template-columns:auto 1fr auto; gap:16px; align-items:start; margin-bottom:14px; }
 .num {
   font-family:var(--mono); font-size:13px; font-weight:600; color:var(--accent);
   background:var(--accent-soft); padding:5px 8px; border-radius:2px;
-  font-variant-numeric:tabular-nums; line-height:1;  margin-top:3px;
+  font-variant-numeric:tabular-nums; line-height:1; margin-top:3px;
 }
+.q.redo .num { color:var(--bad); background:var(--bad-soft); }
 .qt h2 { font-size:18px; font-weight:600; margin:0; letter-spacing:-.015em; }
 .meta { font-family:var(--mono); font-size:12px; color:var(--ink-3); margin:3px 0 0; }
 .pill {
@@ -116,47 +113,60 @@ body {
   padding:5px 10px; border-radius:2px; white-space:nowrap; line-height:1; margin-top:4px;
 }
 .pill.ok { color:var(--ok); background:var(--ok-soft); }
-.pill.wait { color:var(--wait); background:var(--wait-soft); }
+.pill.bad { color:var(--bad); background:var(--bad-soft); }
 @media (max-width:620px) {
   .qh { grid-template-columns:auto 1fr; }
   .pill { grid-column:2; margin-top:0; justify-self:start; }
 }
-.note { font-family:var(--serif); font-size:15px; color:var(--ink-2); margin:0 0 18px; max-width:68ch; }
-.note:empty { display:none; }
+.note { font-family:var(--serif); font-size:15px; color:var(--ink-2); margin:0 0 16px; max-width:68ch; }
+.note:last-child { margin-bottom:0; }
 code.inl {
   font-family:var(--mono); font-size:.86em; background:var(--sunk);
   padding:1.5px 5px; border-radius:2px; color:var(--ink);
 }
-
-/* code blocks */
+.why { background:var(--bad-soft); padding:14px 16px; margin:0 0 16px; border-radius:2px; }
+.wt {
+  display:block; font-family:var(--mono); font-size:10.5px; letter-spacing:.14em;
+  text-transform:uppercase; color:var(--bad); font-weight:600; margin-bottom:6px;
+}
+.why p { margin:0; font-size:14px; color:var(--ink); font-style:italic; max-width:70ch; }
+.steps { display:flex; flex-direction:column; gap:14px; margin:0 0 18px; }
+.step { display:grid; grid-template-columns:24px 1fr; gap:12px; align-items:start; }
+.sn {
+  font-family:var(--mono); font-size:11.5px; font-weight:600; color:var(--ink-3);
+  border:1px solid var(--rule-2); border-radius:50%; width:24px; height:24px;
+  display:grid; place-items:center; margin-top:3px;
+}
+.step .block { margin-top:0; }
+.step .note { margin:2px 0 0; }
 .block { position:relative; margin-top:14px; }
 .block + .block { margin-top:12px; }
 .block pre {
-  margin:0; background:var(--sunk); border:1px solid var(--rule);
-  padding:16px 18px; overflow-x:auto;
-  font-family:var(--mono); font-size:13px; line-height:1.65; color:var(--ink);
-  cursor:text;
+  margin:0; background:var(--sunk); border:1px solid var(--rule); padding:16px 18px; overflow-x:auto;
+  font-family:var(--mono); font-size:13px; line-height:1.65; color:var(--ink); cursor:text;
 }
 .block pre::before {
   content:attr(data-lang); display:block; font-size:10.5px; letter-spacing:.14em;
   text-transform:uppercase; color:var(--ink-3); margin-bottom:10px; font-weight:500;
 }
 .block pre code { font:inherit; white-space:pre; }
+.block.shape pre { background:transparent; border-style:dashed; border-color:var(--rule-2); color:var(--ink-2); }
+.stag {
+  position:absolute; top:-9px; right:12px; z-index:2;
+  font-family:var(--mono); font-size:10px; letter-spacing:.08em; text-transform:uppercase;
+  color:var(--ink-3); background:var(--surface); padding:2px 8px; border:1px solid var(--rule-2);
+  border-radius:2px;
+}
 .copy {
   position:absolute; top:9px; right:10px; z-index:2;
   font-family:var(--mono); font-size:11px; font-weight:500; letter-spacing:.04em;
-  color:var(--ink-2); background:var(--surface);
-  border:1px solid var(--rule-2); border-radius:2px; padding:4px 9px; cursor:pointer;
-  transition:color .12s, border-color .12s;
+  color:var(--ink-2); background:var(--surface); border:1px solid var(--rule-2);
+  border-radius:2px; padding:4px 9px; cursor:pointer; transition:color .12s, border-color .12s;
 }
 .copy:hover { color:var(--accent); border-color:var(--accent); }
 .copy:focus-visible { outline:2px solid var(--accent); outline-offset:1px; }
 .copy[data-done="1"] { color:var(--ok); border-color:var(--ok); }
-
-footer {
-  margin-top:56px; padding-top:22px; border-top:1px solid var(--rule);
-  font-size:13.5px; color:var(--ink-3);
-}
+footer { margin-top:56px; padding-top:22px; border-top:1px solid var(--rule); font-size:13.5px; color:var(--ink-3); }
 footer a { color:var(--accent); }
 footer code { font-family:var(--mono); font-size:.88em; }
 @media (prefers-reduced-motion:reduce) { * { transition:none !important; } }
@@ -164,27 +174,39 @@ footer code { font-family:var(--mono); font-size:.88em; }
 
 <div class="wrap">
 <div class="mast">
-  <p class="eyebrow">Developing AI Applications with Python and Flask &nbsp;/&nbsp; Option 1</p>
+  <p class="eyebrow">Developing AI Applications with Python and Flask &nbsp;/&nbsp; Option 1 &nbsp;/&nbsp; Resubmission</p>
   <h1>Emotion Detection — final project answers</h1>
-  <p class="lede">Every field of the 16-question AI-graded submission, in order, with the exact text to
-  paste. Code is taken verbatim from the pushed repository.</p>
+  <p class="lede">All 16 fields of the AI-graded form. Ten answers stand as submitted; six came back 0/1
+  and are rebuilt below as capture procedures, with the grader's own reason on each.</p>
   <div class="tally">
-    <span class="t-ok">10 of 16 ready to paste</span>
-    <span class="t-wait">6 need the Theia lab</span>
+    <span class="t-bad">6 to redo &mdash; Q3, Q5, Q7, Q9, Q11, Q14</span>
+    <span class="t-ok">10 stand</span>
     <span>pylint 10.00/10</span>
-    <span>5 of 5 unit tests pass</span>
   </div>
 </div>
 
 <div class="notice">
   <span class="ic">!</span>
   <div>
-    <h3>Why six answers can't be filled in yet</h3>
-    <p>The Watson endpoint <code class="inl">sn-watson-emotion.labs.skills.network</code> resolves to
-    <code class="inl">10.241.64.14</code>, a private Skills Network address, so it only answers from inside
-    the Theia lab. Those six are live outputs and screenshots — each card below carries the exact command
-    to run. Everything else is final.</p>
+    <h3>Why those six scored zero</h3>
+    <p>They were submitted as the <em>command</em> without the output it produces. Q3, Q5, Q7 and Q9 are graded
+    on the transcript — the prompt line, the statements, and the values that come back. Q11 and Q14 are file
+    uploads that went in empty.</p>
+    <p>The feedback also corrected two things: Task 2 and Task 3 are graded on the <strong>root-level</strong>
+    import <code class="inl">from emotion_detection import emotion_detector</code>, and Task 4 wants the
+    <strong>full packaged path</strong> <code class="inl">from EmotionDetection.emotion_detection import emotion_detector</code>
+    rather than the shortcut. Both are handled in the steps below.</p>
   </div>
+</div>
+
+<div class="setup">
+  <h3>Do this once first</h3>
+  <p>The Watson endpoint only answers from inside the Theia lab, and the rubric expects the prompt to read
+  <code class="inl">/home/project/final_project</code> — so clone to exactly that path.</p>
+  <div class="block"><button class="copy" type="button">Copy</button><pre data-lang="bash"><code>cd /home/project
+git clone https://github.com/7emb1t/oaqjp-final-project-emb-ai.git final_project
+cd /home/project/final_project
+python3 -m pip install requests flask pylint</code></pre></div>
 </div>
 
 <div class="cols">
@@ -193,18 +215,18 @@ footer code { font-family:var(--mono); font-size:.88em; }
     <ol>
 <li><a href="#q1"><span class="dot ok"></span><span class="rn">01</span><span class="rl">Public GitHub URL of README.md</span></a></li>
 <li><a href="#q2"><span class="dot ok"></span><span class="rn">02</span><span class="rl">2a_emotion_detection</span></a></li>
-<li><a href="#q3"><span class="dot wait"></span><span class="rn">03</span><span class="rl">2b_application_creation</span></a></li>
+<li><a href="#q3"><span class="dot bad"></span><span class="rn">03</span><span class="rl">2b_application_creation</span></a></li>
 <li><a href="#q4"><span class="dot ok"></span><span class="rn">04</span><span class="rl">3a_output_formatting</span></a></li>
-<li><a href="#q5"><span class="dot wait"></span><span class="rn">05</span><span class="rl">3b_formatted_output_test</span></a></li>
+<li><a href="#q5"><span class="dot bad"></span><span class="rn">05</span><span class="rl">3b_formatted_output_test</span></a></li>
 <li><a href="#q6"><span class="dot ok"></span><span class="rn">06</span><span class="rl">Public GitHub URL of __init__.py</span></a></li>
-<li><a href="#q7"><span class="dot wait"></span><span class="rn">07</span><span class="rl">4b_packaging_test</span></a></li>
+<li><a href="#q7"><span class="dot bad"></span><span class="rn">07</span><span class="rl">4b_packaging_test</span></a></li>
 <li><a href="#q8"><span class="dot ok"></span><span class="rn">08</span><span class="rl">5a_unit_testing</span></a></li>
-<li><a href="#q9"><span class="dot wait"></span><span class="rn">09</span><span class="rl">5b_unit_testing_result</span></a></li>
+<li><a href="#q9"><span class="dot bad"></span><span class="rn">09</span><span class="rl">5b_unit_testing_result</span></a></li>
 <li><a href="#q10"><span class="dot ok"></span><span class="rn">10</span><span class="rl">6a_server</span></a></li>
-<li><a href="#q11"><span class="dot wait"></span><span class="rn">11</span><span class="rl">6b_deployment_test.png</span></a></li>
+<li><a href="#q11"><span class="dot bad"></span><span class="rn">11</span><span class="rl">6b_deployment_test.png</span></a></li>
 <li><a href="#q12"><span class="dot ok"></span><span class="rn">12</span><span class="rl">7a_error_handling_function</span></a></li>
 <li><a href="#q13"><span class="dot ok"></span><span class="rn">13</span><span class="rl">7b_error_handling_server</span></a></li>
-<li><a href="#q14"><span class="dot wait"></span><span class="rn">14</span><span class="rl">7c_error_handling_interface.png</span></a></li>
+<li><a href="#q14"><span class="dot bad"></span><span class="rn">14</span><span class="rl">7c_error_handling_interface.png</span></a></li>
 <li><a href="#q15"><span class="dot ok"></span><span class="rn">15</span><span class="rl">8a_server_modified</span></a></li>
 <li><a href="#q16"><span class="dot ok"></span><span class="rn">16</span><span class="rl">8b_static_code_analysis</span></a></li>
     </ol>
@@ -214,7 +236,7 @@ footer code { font-family:var(--mono); font-size:.88em; }
 <header class="qh">
 <span class="num">01</span>
 <div class="qt"><h2>Question 1</h2><p class="meta">Task 1 · Activity 1 &nbsp;·&nbsp; Public GitHub URL of README.md</p></div>
-<span class="pill ok">Ready to paste</span>
+<span class="pill ok">Stands</span>
 </header>
 <p class="note">The README's first line is <code class="inl">#&nbsp;Final project</code>, the exact project name the grader looks for.</p>
 <div class="block"><button class="copy" type="button">Copy</button><pre data-lang="url"><code>https://github.com/7emb1t/oaqjp-final-project-emb-ai/blob/main/README.md</code></pre></div>
@@ -223,9 +245,9 @@ footer code { font-family:var(--mono); font-size:.88em; }
 <header class="qh">
 <span class="num">02</span>
 <div class="qt"><h2>Question 2</h2><p class="meta">Task 2 · Activity 1 &nbsp;·&nbsp; 2a_emotion_detection — application function</p></div>
-<span class="pill ok">Ready to paste</span>
+<span class="pill ok">Stands</span>
 </header>
-<p class="note">The full <code class="inl">emotion_detection.py</code>. It posts to the Watson NLP <code class="inl">EmotionPredict</code> endpoint with the required header and input JSON.</p>
+<p class="note">The full <code class="inl">emotion_detection.py</code>: it posts to the Watson NLP <code class="inl">EmotionPredict</code> endpoint with the required header and input JSON.</p>
 <div class="block"><button class="copy" type="button">Copy</button><pre data-lang="python"><code>&quot;&quot;&quot;Emotion detection module powered by the embeddable Watson NLP library.
 
 This module sends text to the Watson NLP EmotionPredict endpoint and returns
@@ -279,24 +301,30 @@ def emotion_detector(text_to_analyze):
 
     return emotion_scores</code></pre></div>
 </article>
-<article class="q" id="q3">
+<article class="q redo" id="q3">
 <header class="qh">
 <span class="num">03</span>
 <div class="qt"><h2>Question 3</h2><p class="meta">Task 2 · Activity 2 &nbsp;·&nbsp; 2b_application_creation — terminal output</p></div>
-<span class="pill wait">Needs the lab</span>
+<span class="pill bad">Redo &middot; 0/1</span>
 </header>
-<p class="note">Run this in the lab from <code class="inl">final_project</code>, then paste the whole block — all three steps plus the returned dictionary. That is what proves the application imported and ran without errors.</p>
-<div class="block"><button class="copy" type="button">Copy</button><pre data-lang="terminal"><code>python3
->>> from EmotionDetection.emotion_detection import emotion_detector
->>> emotion_detector("I love this new technology.")</code></pre></div>
+
+<div class="why"><span class="wt">Grader said</span><p>The import path is &ldquo;from EmotionDetection.emotion_detection import emotion_detector&rdquo; rather than the specified &ldquo;from emotion_detection import emotion_detector&rdquo;; it does not show the project root folder &ldquo;/home/project/final_project&rdquo; or a successful dictionary-structured output.</p></div><p class="note">Three things to fix: the module has to be imported from the <strong>project root</strong>, not the package; the <strong>prompt line</strong> has to be visible; and the <strong>long JSON</strong> Watson returns has to be there. Task 2 comes before packaging, so put the Task 2 module at the root first.</p><div class="steps"><div class="step"><span class="sn">1</span><div><div class="block"><button class="copy" type="button">Copy</button><pre data-lang="bash"><code>cp submission/stage/task2_emotion_detection.py emotion_detection.py
+python3</code></pre></div></div></div><div class="step"><span class="sn">2</span><div><div class="block"><button class="copy" type="button">Copy</button><pre data-lang="python"><code>from emotion_detection import emotion_detector
+emotion_detector("I love this new technology.")</code></pre></div></div></div><div class="step"><span class="sn">3</span><div><p class="note">Copy from the <code class="inl">$</code> prompt down through the JSON string, then <code class="inl">exit()</code>.</p></div></div></div><div class="block shape"><span class="stag">Shape only — not an answer</span><pre data-lang="what your paste must contain"><code>theia@theiadocker-lembit:/home/project/final_project$ python3
+Python 3.11.x (main, ...) [GCC ...] on linux
+Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
+&gt;&gt;&gt; from emotion_detection import emotion_detector
+&gt;&gt;&gt; emotion_detector(&quot;I love this new technology.&quot;)
+'{&quot;emotionPredictions&quot;:[{&quot;emotion&quot;:{&quot;anger&quot;:… , &quot;disgust&quot;:… , &quot;fear&quot;:… , &quot;joy&quot;:… , &quot;sadness&quot;:…}, … }], … }'
+&gt;&gt;&gt; exit()</code></pre></div>
 </article>
 <article class="q" id="q4">
 <header class="qh">
 <span class="num">04</span>
 <div class="qt"><h2>Question 4</h2><p class="meta">Task 3 · Activity 1 &nbsp;·&nbsp; 3a_output_formatting — modified function</p></div>
-<span class="pill ok">Ready to paste</span>
+<span class="pill ok">Stands</span>
 </header>
-<p class="note">Same file as Question 2. Its <code class="inl">emotion_detector</code> returns the five scores plus <code class="inl">dominant_emotion</code>, which is exactly the format this question grades.</p>
+<p class="note">Same file as Question 2. Its <code class="inl">emotion_detector</code> returns the five scores plus <code class="inl">dominant_emotion</code>, which is the format this question grades.</p>
 <div class="block"><button class="copy" type="button">Copy</button><pre data-lang="python"><code>&quot;&quot;&quot;Emotion detection module powered by the embeddable Watson NLP library.
 
 This module sends text to the Watson NLP EmotionPredict endpoint and returns
@@ -350,22 +378,25 @@ def emotion_detector(text_to_analyze):
 
     return emotion_scores</code></pre></div>
 </article>
-<article class="q" id="q5">
+<article class="q redo" id="q5">
 <header class="qh">
 <span class="num">05</span>
 <div class="qt"><h2>Question 5</h2><p class="meta">Task 3 · Activity 2 &nbsp;·&nbsp; 3b_formatted_output_test — terminal output</p></div>
-<span class="pill wait">Needs the lab</span>
+<span class="pill bad">Redo &middot; 0/1</span>
 </header>
-<p class="note">Confirm the response shows <code class="inl">'dominant_emotion': 'joy'</code> before pasting.</p>
-<div class="block"><button class="copy" type="button">Copy</button><pre data-lang="terminal"><code>python3
->>> from EmotionDetection.emotion_detection import emotion_detector
->>> emotion_detector("I am so happy I am doing this.")</code></pre></div>
+
+<div class="why"><span class="wt">Grader said</span><p>The submission includes the command emotion_detector(&quot;I am so happy I am doing this.&quot;) but does not include the resulting dictionary with anger, disgust, fear, joy, sadness, and the dominant_emotion key.</p></div><p class="note">Swap the formatted module in at the root and run it again. Still the root-level import, since Task 3 is also pre-packaging.</p><div class="steps"><div class="step"><span class="sn">1</span><div><div class="block"><button class="copy" type="button">Copy</button><pre data-lang="bash"><code>cp EmotionDetection/emotion_detection.py emotion_detection.py
+python3</code></pre></div></div></div><div class="step"><span class="sn">2</span><div><div class="block"><button class="copy" type="button">Copy</button><pre data-lang="python"><code>from emotion_detection import emotion_detector
+emotion_detector("I am so happy I am doing this.")</code></pre></div></div></div><div class="step"><span class="sn">3</span><div><p class="note">The returned dictionary must show all five scores and <code class="inl">'dominant_emotion': 'joy'</code>.</p></div></div></div><div class="block shape"><span class="stag">Shape only — not an answer</span><pre data-lang="what your paste must contain"><code>theia@theiadocker-lembit:/home/project/final_project$ python3
+&gt;&gt;&gt; from emotion_detection import emotion_detector
+&gt;&gt;&gt; emotion_detector(&quot;I am so happy I am doing this.&quot;)
+{'anger': …, 'disgust': …, 'fear': …, 'joy': …, 'sadness': …, 'dominant_emotion': 'joy'}</code></pre></div>
 </article>
 <article class="q" id="q6">
 <header class="qh">
 <span class="num">06</span>
 <div class="qt"><h2>Question 6</h2><p class="meta">Task 4 · Activity 1 &nbsp;·&nbsp; Public GitHub URL of __init__.py</p></div>
-<span class="pill ok">Ready to paste</span>
+<span class="pill ok">Stands</span>
 </header>
 <p class="note">Paste the URL into the field. The file it points at is shown below for reference.</p>
 <div class="block"><button class="copy" type="button">Copy</button><pre data-lang="url"><code>https://github.com/7emb1t/oaqjp-final-project-emb-ai/blob/main/EmotionDetection/__init__.py</code></pre></div><div class="block"><button class="copy" type="button">Copy</button><pre data-lang="python"><code>&quot;&quot;&quot;EmotionDetection package.
@@ -377,24 +408,26 @@ application can be imported as `from EmotionDetection import emotion_detector`.
 from . import emotion_detection
 from .emotion_detection import emotion_detector</code></pre></div>
 </article>
-<article class="q" id="q7">
+<article class="q redo" id="q7">
 <header class="qh">
 <span class="num">07</span>
 <div class="qt"><h2>Question 7</h2><p class="meta">Task 4 · Activity 2 &nbsp;·&nbsp; 4b_packaging_test — terminal output</p></div>
-<span class="pill wait">Needs the lab</span>
+<span class="pill bad">Redo &middot; 0/1</span>
 </header>
-<p class="note">Importing straight from the package name is what validates it. Confirm <code class="inl">'dominant_emotion': 'anger'</code>.</p>
-<div class="block"><button class="copy" type="button">Copy</button><pre data-lang="terminal"><code>python3
->>> from EmotionDetection import emotion_detector
->>> emotion_detector("I hate working long hours.")</code></pre></div>
+
+<div class="why"><span class="wt">Grader said</span><p>The submission includes &ldquo;from EmotionDetection import emotion_detector&rdquo; and a function call, but it does not include the required import statement &ldquo;from EmotionDetection.emotion_detection import emotion_detector&rdquo; or terminal output showing 'dominant_emotion': 'anger' and the other emotion scores.</p></div><p class="note">The rubric wants the <strong>full packaged path</strong> here, not the <code class="inl">from EmotionDetection import …</code> shortcut I gave you. Both work in Python; only one is graded.</p><div class="steps"><div class="step"><span class="sn">1</span><div><div class="block"><button class="copy" type="button">Copy</button><pre data-lang="bash"><code>python3</code></pre></div></div></div><div class="step"><span class="sn">2</span><div><div class="block"><button class="copy" type="button">Copy</button><pre data-lang="python"><code>from EmotionDetection.emotion_detection import emotion_detector
+emotion_detector("I hate working long hours.")</code></pre></div></div></div><div class="step"><span class="sn">3</span><div><p class="note">The dictionary must show <code class="inl">'dominant_emotion': 'anger'</code>.</p></div></div></div><div class="block shape"><span class="stag">Shape only — not an answer</span><pre data-lang="what your paste must contain"><code>theia@theiadocker-lembit:/home/project/final_project$ python3
+&gt;&gt;&gt; from EmotionDetection.emotion_detection import emotion_detector
+&gt;&gt;&gt; emotion_detector(&quot;I hate working long hours.&quot;)
+{'anger': …, 'disgust': …, 'fear': …, 'joy': …, 'sadness': …, 'dominant_emotion': 'anger'}</code></pre></div>
 </article>
 <article class="q" id="q8">
 <header class="qh">
 <span class="num">08</span>
 <div class="qt"><h2>Question 8</h2><p class="meta">Task 5 · Activity 1 &nbsp;·&nbsp; 5a_unit_testing — unit tests</p></div>
-<span class="pill ok">Ready to paste</span>
+<span class="pill ok">Stands</span>
 </header>
-<p class="note">One test per required statement and dominant emotion, as specified in the project table.</p>
+<p class="note">One test per required statement and dominant emotion, matching the project's table.</p>
 <div class="block"><button class="copy" type="button">Copy</button><pre data-lang="python"><code>&quot;&quot;&quot;Unit tests for the emotion_detector function of the EmotionDetection package.&quot;&quot;&quot;
 
 import unittest
@@ -434,20 +467,25 @@ class TestEmotionDetector(unittest.TestCase):
 if __name__ == &#x27;__main__&#x27;:
     unittest.main()</code></pre></div>
 </article>
-<article class="q" id="q9">
+<article class="q redo" id="q9">
 <header class="qh">
 <span class="num">09</span>
 <div class="qt"><h2>Question 9</h2><p class="meta">Task 5 · Activity 2 &nbsp;·&nbsp; 5b_unit_testing_result — terminal output</p></div>
-<span class="pill wait">Needs the lab</span>
+<span class="pill bad">Redo &middot; 0/1</span>
 </header>
-<p class="note">Expect <code class="inl">Ran 5 tests</code> followed by <code class="inl">OK</code>.</p>
-<div class="block"><button class="copy" type="button">Copy</button><pre data-lang="terminal"><code>python3 test_emotion_detection.py</code></pre></div>
+
+<div class="why"><span class="wt">Grader said</span><p>The submission includes only the command &ldquo;python3 test_emotion_detection.py&rdquo; and does not include terminal output showing executed tests with the result &ldquo;OK&rdquo;.</p></div><p class="note">Paste the command <em>and</em> everything it prints.</p><div class="steps"><div class="step"><span class="sn">1</span><div><div class="block"><button class="copy" type="button">Copy</button><pre data-lang="bash"><code>python3 test_emotion_detection.py</code></pre></div></div></div></div><div class="block shape"><span class="stag">Shape only — not an answer</span><pre data-lang="what your paste must contain"><code>theia@theiadocker-lembit:/home/project/final_project$ python3 test_emotion_detection.py
+.....
+----------------------------------------------------------------------
+Ran 5 tests in ….…s
+
+OK</code></pre></div>
 </article>
 <article class="q" id="q10">
 <header class="qh">
 <span class="num">10</span>
 <div class="qt"><h2>Question 10</h2><p class="meta">Task 6 · Activity 1 &nbsp;·&nbsp; 6a_server — Flask deployment</p></div>
-<span class="pill ok">Ready to paste</span>
+<span class="pill ok">Stands</span>
 </header>
 <p class="note">The Task 6 state of <code class="inl">server.py</code>: the <code class="inl">/emotionDetector</code> route, the response sentence in the customer's requested format, and the app served on port 5000.</p>
 <div class="block"><button class="copy" type="button">Copy</button><pre data-lang="python"><code>&quot;&quot;&quot;Flask server that deploys the emotion detection application on the web.
@@ -498,20 +536,20 @@ def render_index_page():
 if __name__ == &quot;__main__&quot;:
     app.run(host=&quot;0.0.0.0&quot;, port=5000)</code></pre></div>
 </article>
-<article class="q" id="q11">
+<article class="q redo" id="q11">
 <header class="qh">
 <span class="num">11</span>
 <div class="qt"><h2>Question 11</h2><p class="meta">Task 6 · Activity 2 &nbsp;·&nbsp; 6b_deployment_test.png — upload</p></div>
-<span class="pill wait">Needs the lab</span>
+<span class="pill bad">Redo &middot; 0/1</span>
 </header>
-<p class="note">Run <code class="inl">python3 server.py</code>, open the app on port 5000, enter <strong>I think I am having fun</strong>, click <em>Run Sentiment Analysis</em>, and screenshot the page showing the system response ending in <code class="inl">The dominant emotion is joy.</code></p>
 
+<div class="why"><span class="wt">Grader said</span><p>No answer was provided by the learner.</p></div><p class="note">This field takes a file upload — a screenshot of the running app. Nothing was attached.</p><div class="steps"><div class="step"><span class="sn">1</span><div><div class="block"><button class="copy" type="button">Copy</button><pre data-lang="bash"><code>python3 server.py</code></pre></div></div></div><div class="step"><span class="sn">2</span><div><p class="note">Skills Network &rarr; <em>Launch Application</em> &rarr; port <strong>5000</strong>.</p></div></div><div class="step"><span class="sn">3</span><div><p class="note">Type <strong>I think I am having fun</strong>, click <em>Run Sentiment Analysis</em>, and wait for the response line to render.</p></div></div><div class="step"><span class="sn">4</span><div><p class="note">Screenshot the page. It has to show the five scores and <code class="inl">The dominant emotion is joy.</code> Save as <code class="inl">6b_deployment_test.png</code> and upload.</p></div></div></div>
 </article>
 <article class="q" id="q12">
 <header class="qh">
 <span class="num">12</span>
 <div class="qt"><h2>Question 12</h2><p class="meta">Task 7 · Activity 1 &nbsp;·&nbsp; 7a_error_handling_function — status code 400</p></div>
-<span class="pill ok">Ready to paste</span>
+<span class="pill ok">Stands</span>
 </header>
 <p class="note">Same file as Question 2. The graded part is the <code class="inl">status_code == 400</code> branch, which returns the dictionary with every value set to <code class="inl">None</code>.</p>
 <div class="block"><button class="copy" type="button">Copy</button><pre data-lang="python"><code>&quot;&quot;&quot;Emotion detection module powered by the embeddable Watson NLP library.
@@ -571,7 +609,7 @@ def emotion_detector(text_to_analyze):
 <header class="qh">
 <span class="num">13</span>
 <div class="qt"><h2>Question 13</h2><p class="meta">Task 7 · Activity 2 &nbsp;·&nbsp; 7b_error_handling_server — blank input</p></div>
-<span class="pill ok">Ready to paste</span>
+<span class="pill ok">Stands</span>
 </header>
 <p class="note">The graded part is the <code class="inl">if dominant_emotion is None</code> branch returning <code class="inl">Invalid text! Please try again!</code></p>
 <div class="block"><button class="copy" type="button">Copy</button><pre data-lang="python"><code>&quot;&quot;&quot;Flask server that deploys the emotion detection application on the web.
@@ -626,22 +664,22 @@ def render_index_page():
 if __name__ == &quot;__main__&quot;:
     app.run(host=&quot;0.0.0.0&quot;, port=5000)</code></pre></div>
 </article>
-<article class="q" id="q14">
+<article class="q redo" id="q14">
 <header class="qh">
 <span class="num">14</span>
 <div class="qt"><h2>Question 14</h2><p class="meta">Task 7 · Activity 3 &nbsp;·&nbsp; 7c_error_handling_interface.png — upload</p></div>
-<span class="pill wait">Needs the lab</span>
+<span class="pill bad">Redo &middot; 0/1</span>
 </header>
-<p class="note">With the server still running, leave the input box empty and click <em>Run Sentiment Analysis</em>. Screenshot the page showing <strong>Invalid text! Please try again!</strong></p>
 
+<div class="why"><span class="wt">Grader said</span><p>No answer was provided by the learner.</p></div><p class="note">Also a file upload, also left empty. Same server session as Question 11 — no restart needed.</p><div class="steps"><div class="step"><span class="sn">1</span><div><p class="note">With the server still running, clear the input box completely.</p></div></div><div class="step"><span class="sn">2</span><div><p class="note">Click <em>Run Sentiment Analysis</em> on the empty box.</p></div></div><div class="step"><span class="sn">3</span><div><p class="note">Screenshot the page showing <code class="inl">Invalid text! Please try again!</code> Save as <code class="inl">7c_error_handling_interface.png</code> and upload.</p></div></div></div>
 </article>
 <article class="q" id="q15">
 <header class="qh">
 <span class="num">15</span>
 <div class="qt"><h2>Question 15</h2><p class="meta">Task 8 · Activity 1 &nbsp;·&nbsp; 8a_server_modified — static analysis</p></div>
-<span class="pill ok">Ready to paste</span>
+<span class="pill ok">Stands</span>
 </header>
-<p class="note">Same file as Question 13 — the one that scores a perfect pylint rating. Every module, function and method carries a docstring, which is what separates 9/10 from 10/10.</p>
+<p class="note">Same file as Question 13 — the one that scores a perfect rating. Every module, function and method carries a docstring, which is what separates 9/10 from 10/10.</p>
 <div class="block"><button class="copy" type="button">Copy</button><pre data-lang="python"><code>&quot;&quot;&quot;Flask server that deploys the emotion detection application on the web.
 
 The application exposes the `/emotionDetector` route, which analyses the text
@@ -698,9 +736,9 @@ if __name__ == &quot;__main__&quot;:
 <header class="qh">
 <span class="num">16</span>
 <div class="qt"><h2>Question 16</h2><p class="meta">Task 8 · Activity 2 &nbsp;·&nbsp; 8b_static_code_analysis — pylint score</p></div>
-<span class="pill ok">Ready to paste</span>
+<span class="pill ok">Stands</span>
 </header>
-<p class="note">Verified locally against this exact <code class="inl">server.py</code>. Re-run <code class="inl">pylint server.py</code> in the lab if you want the lab's own transcript.</p>
+<p class="note">Verified against this exact <code class="inl">server.py</code>. Re-run <code class="inl">pylint server.py</code> in the lab and paste that transcript if you want the lab's own output.</p>
 <div class="block"><button class="copy" type="button">Copy</button><pre data-lang="terminal"><code>$ pylint server.py
 
 
@@ -709,12 +747,13 @@ Your code has been rated at 10.00/10</code></pre></div>
 </article>
     <footer>
       <p>Repository: <a href="https://github.com/7emb1t/oaqjp-final-project-emb-ai">github.com/7emb1t/oaqjp-final-project-emb-ai</a> &nbsp;·&nbsp;
-      local copy at <code>~/Desktop/final_project</code>, lab steps in <code>submission/RUN_IN_LAB.md</code>.</p>
+      local copy at <code>~/Desktop/final_project</code> &nbsp;·&nbsp; full procedure in
+      <code>submission/CAPTURE.md</code>.</p>
+      <p>The root-level <code>emotion_detection.py</code> exists only for the Q3 and Q5 captures. Delete it
+      afterwards — the packaged copy under <code>EmotionDetection/</code> is the real one.</p>
       <p>Questions 2, 4 and 12 share the same <code>emotion_detection.py</code>: the final file defines the
       application function, returns the required output format, and handles status code 400, so one answer
-      satisfies all three. The literal Task 2 stage — the version that returns
-      <code>response.text</code> before Task 3 modifies it — is kept at
-      <code>submission/2a_emotion_detection.txt</code> if you would rather stage them separately.</p>
+      satisfies all three.</p>
     </footer>
   </main>
 </div>
@@ -724,7 +763,6 @@ Your code has been rated at 10.00/10</code></pre></div>
 document.querySelectorAll(".copy").forEach(function (btn) {
   btn.addEventListener("click", function () {
     var code = btn.parentElement.querySelector("code");
-    var text = code.innerText;
     var mark = function () {
       btn.textContent = "Copied";
       btn.setAttribute("data-done", "1");
@@ -736,14 +774,12 @@ document.querySelectorAll(".copy").forEach(function (btn) {
       var s = window.getSelection();
       s.removeAllRanges();
       s.addRange(r);
-      btn.textContent = "Selected — press \u2318C";
+      btn.textContent = "Selected \u2014 press \u2318C";
       setTimeout(function () { btn.textContent = "Copy"; }, 2400);
     };
     if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(text).then(mark).catch(select);
-    } else {
-      select();
-    }
+      navigator.clipboard.writeText(code.innerText).then(mark).catch(select);
+    } else { select(); }
   });
 });
 </script>
